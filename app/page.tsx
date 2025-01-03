@@ -1,12 +1,10 @@
 "use client";
 
-import { use, useState } from 'react';
-import IndexingDataSet from './components/IndexingDataSet';
+import { useState } from 'react';
 import { getMetrics, processDataSet } from './services/metrics.services';
 
 export default function Home() {
   const [goldIndex, setGoldIndex] = useState([])
-  const [goldIndexIsVisible, setGoldIndexIsVisible] = useState(false);
 
   const [ds1, setDs1] = useState([])
   const [ds1Name, setDs1Name] = useState('')
