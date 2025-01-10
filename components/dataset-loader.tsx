@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import HideableTable from "./hideableTable";
 import { Dataset, DatasetItem, useApplicationContext } from "@/contexts/applicationContext";
 
@@ -8,7 +8,7 @@ const DatasetLoader = () => {
     const context = useApplicationContext();
 
     function getDataTable(dataset : Dataset) : string[][] {
-        let result : string[][] = []
+        const result : string[][] = []
         dataset.data.forEach((item) => {
             result.push([item.id, item.terms.join(', ')])
         });

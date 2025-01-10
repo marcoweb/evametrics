@@ -8,7 +8,7 @@ const GoldIndexLoader = () => {
     const context = useApplicationContext();
 
     function getDataTable(dataset : Dataset) : string[][] {
-        let result : string[][] = []
+        const result : string[][] = []
         dataset.data.forEach((item) => {
             result.push([item.id, item.terms.join(', ')])
         });

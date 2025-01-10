@@ -1,9 +1,6 @@
 'use client'
 
-import { useApplicationContext } from "@/contexts/applicationContext";
-
 const ProcessButton = () => {
-    const context = useApplicationContext();
 
 
     return(

@@ -51,7 +51,7 @@ const HideableTable = ({header, data} : HidableTableProps) => {
                 </thead>
                 <tbody>
                     {data.map((row, rk) => (
-                        <tr>
+                        <tr key={rk}>
                             {row.map((value, rc) => (
                                 <td key={rk+'_'+rc+value}>{value}</td>
                             ))}
