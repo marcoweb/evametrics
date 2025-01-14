@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useApplicationContext } from "@/contexts/applicationContext";
 import { processGoldIndex } from "@/services/metrics.services";
 import { getStatsFromDataset } from "@/services/metric-service";
@@ -13,6 +13,10 @@ type ErrorMessage = {
 const ProcessButton = () => {
     const context = useApplicationContext();
     const [errors, setErrors] = useState<ErrorMessage[]>([])
+
+    useEffect(() => {
+        setErrors([]);
+    }, [context.dataset1Name, context.dataset2Name, context.dataset1, context.dataset2, context.goldIndex])
 
     function validateData() : boolean {
         const er : ErrorMessage[] = []
@@ -34,6 +38,8 @@ const ProcessButton = () => {
         setErrors(er)
         return (er.length == 0);
     }
+
+
 
     function handleProcess() {
         if(validateData()) {
