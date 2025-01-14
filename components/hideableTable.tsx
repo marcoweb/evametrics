@@ -16,11 +16,13 @@ type HidableTableHeader = {
 
 interface HidableTableProps {
     header : HidableTableHeader;
-    data : string[][]
+    data : string[][];
+    startHidden? : boolean;
+    labelWhenHidden? : string;
 }
 
-const HideableTable = ({header, data} : HidableTableProps) => {
-    const [isHidden, setIsHidden] = useState(true);
+const HideableTable = ({header, data, startHidden = true, labelWhenHidden = ''} : HidableTableProps) => {
+    const [isHidden, setIsHidden] = useState(startHidden);
 
     function visibilityToggler() {
         setIsHidden(!isHidden);
@@ -30,11 +32,11 @@ const HideableTable = ({header, data} : HidableTableProps) => {
         <div>
             {isHidden ?
             <p>
-                {data.length > 0 ? <button onClick={visibilityToggler} className="rounded-md bg-gray-400 p-2 text-white w-full hover:bg-gray-500 transition-all cursor-pointer mt-4">Exibir {data.length} Registro{data.length > 1 ? 's' : ''}</button> : <span>Sem Registros</span>}
+                {data.length > 0 ? <button onClick={visibilityToggler} className="rounded-md bg-gray-400 p-2 text-white w-full hover:bg-gray-500 transition-all cursor-pointer mt-4">{labelWhenHidden} {labelWhenHidden.length > 0 ? ':' : ''} <span className="text-center italic text-gray-100">Clique para Exibir {data.length} Registro{data.length > 1 ? 's' : ''}</span></button> : <span>Sem Registros</span>}
             </p> :
             <>
             <span className="text-center block italic text-gray-500">Clique na Tabela Para Ocultar</span>
-            <table onClick={visibilityToggler} className="table-autow-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table onClick={visibilityToggler} className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead>
                     <tr>
                         {header.row1.map((item, key) => (

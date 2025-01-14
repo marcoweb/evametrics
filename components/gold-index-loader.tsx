@@ -2,7 +2,9 @@
 
 import { ChangeEvent } from "react";
 import HideableTable from "./hideableTable";
-import { Dataset, DatasetItem, useApplicationContext } from "@/contexts/applicationContext";
+import { Dataset } from "@/types/dataset";
+import { useApplicationContext } from "@/contexts/applicationContext";
+import { DatasetItem } from "@/types/dataset-item";
 
 const GoldIndexLoader = () => {
     const context = useApplicationContext();

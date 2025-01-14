@@ -2,7 +2,9 @@
 
 import { ChangeEvent } from "react";
 import HideableTable from "./hideableTable";
-import { Dataset, DatasetItem, useApplicationContext } from "@/contexts/applicationContext";
+import { useApplicationContext } from "@/contexts/applicationContext";
+import { Dataset } from "@/types/dataset";
+import { DatasetItem } from "@/types/dataset-item";
 
 const DatasetLoader = () => {
     const context = useApplicationContext();
@@ -42,6 +44,14 @@ const DatasetLoader = () => {
         }
     }
 
+    function onNameChangeHandler(event : ChangeEvent<HTMLInputElement>) {
+        if(event.target.id == 'nameDS1') {
+            context.setDataset1Name(event.target.value);
+        } else if(event.target.id == 'nameDS2') {
+            context.setDataset2Name(event.target.value);
+        }
+    }
+
     const headerTable = {
         row1: [
             {title: 'ID'},
@@ -52,13 +62,13 @@ const DatasetLoader = () => {
     return (
         <div>
             <label htmlFor='nameDS1' className="font-bold text-1xl">Nome do Conjunto 1</label>
-            <input type="text" name='nameDS1' id='nameDS1' className="border-gray-400 rounded-md text-gray-600 focus:border-sky-600 focus:outline focus:outline-0" />
+            <input value={context.dataset1Name} onChange={onNameChangeHandler} type="text" name='nameDS1' id='nameDS1' className="border-gray-400 rounded-md text-gray-600 focus:border-sky-600 focus:outline focus:outline-0" />
             <label htmlFor="DS1" className="font-bold text-1xl">Conjunto de Dados</label>
             <input type="file" onChange={onChangeFileHandler} name='DS1' id='DS1' className="block w-full text-sm text-slate-500 border-0 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-sky-500 file:text-sm file:font-semibold file:text-white hover:file:hover:bg-sky-600" />
             <HideableTable header={headerTable} data={dataTable1} />
             <hr />
             <label htmlFor='nameDS2' className="font-bold text-1xl">Nome do Conjunto 2</label>
-            <input type="text" name='nameDS2' id='nameDS2' className="border-gray-400 rounded-md text-gray-600 focus:border-sky-600 focus:outline focus:outline-0"  />
+            <input value={context.dataset2Name} onChange={onNameChangeHandler} type="text" name='nameDS2' id='nameDS2' className="border-gray-400 rounded-md text-gray-600 focus:border-sky-600 focus:outline focus:outline-0"  />
             <label htmlFor="DS2" className="font-bold text-1xl">Conjunto de Dados</label>
             <input type="file" onChange={onChangeFileHandler} name='DS2' id='DS2' className="block w-full text-sm text-slate-500 border-0 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-sky-500 file:text-sm file:font-semibold file:text-white hover:file:hover:bg-sky-600" />
             <HideableTable header={headerTable} data={dataTable2} />

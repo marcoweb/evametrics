@@ -1,5 +1,8 @@
 'use client'
-import { DatasetItem, useApplicationContext } from "@/contexts/applicationContext";
+import { useApplicationContext } from "@/contexts/applicationContext";
+import { DatasetItem } from "@/types/dataset-item";
+import { DocumentStats } from "@/types/document-stats";
+import { IndexingMetric } from "@/types/indexing-metric";
 
 const ClearButton = () => {
     const context = useApplicationContext();
@@ -8,6 +11,11 @@ const ClearButton = () => {
         context.setGoldIndex({label: 'GoldIndex', data: new Map<string, DatasetItem>()});
         context.setDataset1({label: 'Dataset1', data: new Map<string, DatasetItem>()});
         context.setDataset2({label: 'Dataset2', data: new Map<string, DatasetItem>()});
+        context.setGoldIndexStats({averageOfTerms: 0, numberOfTerms: 0});
+        context.setDataset1Stats({averageOfTerms: 0, numberOfTerms: 0, documentsStats: new Map<string, DocumentStats>(), averageMetrics: new Map<string, IndexingMetric>()});
+        context.setDataset2Stats({averageOfTerms: 0, numberOfTerms: 0, documentsStats: new Map<string, DocumentStats>(), averageMetrics: new Map<string, IndexingMetric>()});
+        context.setDataset1Name('');
+        context.setDataset2Name('');
     }
 
     return (

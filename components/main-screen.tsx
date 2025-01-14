@@ -3,6 +3,7 @@ import DatasetLoader from "./dataset-loader";
 import GoldIndexLoader from "./gold-index-loader";
 import ClearButton from "./clear-button";
 import ProcessButton from "./process-button";
+import ResultTable from "./result-table";
 
 const MainScreen = () => {
     return (
@@ -15,6 +16,7 @@ const MainScreen = () => {
                 <DatasetLoader />
                 <hr />
                 <ProcessButton />
+                <ResultTable />
             </ApplicationContextProvider>
         </main>
     );
