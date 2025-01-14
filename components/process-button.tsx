@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useApplicationContext } from "@/contexts/applicationContext";
-import { processDataset, processGoldIndex } from "@/services/metrics.services";
+import { processGoldIndex } from "@/services/metrics.services";
 import { getStatsFromDataset } from "@/services/metric-service";
 
 type ErrorMessage = {
@@ -53,7 +53,7 @@ const ProcessButton = () => {
             <button onClick={handleProcess} className="rounded-md bg-green-500 p-2 text-white w-full hover:bg-green-600 transition-all cursor-pointer mt-4">Processar Conjuntos</button>
             {errors.length > 0 ?
             <div className="border border-red-600 m-2 rounded-md bg-red-100 text-red-600">
-                {errors.map((error) => <p><em className="font-bold">{error.target}</em> : {error.message}</p>)}
+                {errors.map((error) => <p key={error.target}><em className="font-bold">{error.target}</em> : {error.message}</p>)}
             </div> : ''}
         </div>
     );
