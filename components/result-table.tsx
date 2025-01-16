@@ -72,10 +72,10 @@ const ResultTable = () => {
         <div>
             <h1 className="p-4 font-bold text-2xl text-center">Resultados</h1>
             <h1 className="p-4 font-bold text-1xl text-center">Médias</h1>
-            <HideableTable header={averageHeaderTable} data={averageTableData} startHidden={false} labelWhenHidden="Tabela de Médias" />
+            <HideableTable canBeExported={true} header={averageHeaderTable} data={averageTableData} startHidden={false} labelWhenHidden="Tabela de Médias" />
 
             <h1 className="p-4 font-bold text-1xl text-center">Conjuntos de Dados</h1>
-            <HideableTable header={datasetsHeaderTable} data={datasetsTableData} startHidden={false} />
+            <HideableTable canBeExported={true} header={datasetsHeaderTable} data={datasetsTableData} startHidden={false} />
         </div> : ''}
         </>
     );

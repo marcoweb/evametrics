@@ -1,15 +1,16 @@
 'use client'
 
 import { useState } from "react";
+import CsvExportControl from "./csv-export-control";
 
-type HidableTableHeaderItem = {
+export type HidableTableHeaderItem = {
     title : string;
     colspan? : number;
     rowspan? : number;
     classNames? : string[];
 }
 
-type HidableTableHeader = {
+export type HidableTableHeader = {
     row1 : HidableTableHeaderItem[];
     row2? : HidableTableHeaderItem[];
 }
@@ -19,9 +20,10 @@ interface HidableTableProps {
     data : string[][];
     startHidden? : boolean;
     labelWhenHidden? : string;
+    canBeExported? : boolean;
 }
 
-const HideableTable = ({header, data, startHidden = true, labelWhenHidden = ''} : HidableTableProps) => {
+const HideableTable = ({header, data, startHidden = true, labelWhenHidden = '', canBeExported = false} : HidableTableProps) => {
     const [isHidden, setIsHidden] = useState(startHidden);
 
     function visibilityToggler() {
@@ -36,6 +38,9 @@ const HideableTable = ({header, data, startHidden = true, labelWhenHidden = ''} 
             </p> :
             <>
             <span className="text-center block italic text-gray-500">Clique na Tabela Para Ocultar</span>
+            {canBeExported ?
+            <CsvExportControl tableHeader={header} tableData={data} />
+            : ''}
             <table onClick={visibilityToggler} className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead>
                     <tr>
