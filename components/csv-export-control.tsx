@@ -7,14 +7,11 @@ interface CsvExportControlProps {
 
 const CsvExportControl = ({tableHeader, tableData} : CsvExportControlProps) => {
     function getHeader() : string[] {
-        let span = 0;
-        let cols : string[] = [];
-        (tableHeader.row1 as HidableTableHeaderItem[]).forEach((item, index) => {
+        const cols : string[] = [];
+        (tableHeader.row1 as HidableTableHeaderItem[]).forEach((item) => {
             console.log(item);
-            if(item.colspan == null) {
+            if(item.colspan == null)
                 cols.push(item.title);
-                span += 1;
-            }
             for(let cont = 0; cont < (item.colspan as number); cont++) {
                 cols.push(item.title + " - " + (tableHeader.row2 as HidableTableHeaderItem[])[cont].title);
             }
@@ -24,14 +21,14 @@ const CsvExportControl = ({tableHeader, tableData} : CsvExportControlProps) => {
     }
 
     function exportControlHandler () {
-        let csvHeader = (tableHeader.row2 == null) ?
+        const csvHeader = (tableHeader.row2 == null) ?
             tableHeader.row1.map((headerItem) => headerItem.title).join(", ") + "\n" :
             getHeader().join(", ") + "\n";
 
-        let csvContent = "data:text/csv;charset=utf-8," + csvHeader
+        const csvContent = "data:text/csv;charset=utf-8," + csvHeader
         + tableData.map(rowData => rowData.map((value) => value.replace(',', '.')).join(",")).join("\n");
 
-        let encodedUri = encodeURI(csvContent);
+        const encodedUri = encodeURI(csvContent);
         window.open(encodedUri);
     }
 
