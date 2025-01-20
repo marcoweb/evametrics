@@ -30,6 +30,11 @@ interface ApplicationContextType {
     dataset2Name : string;
     setDataset2Name : React.Dispatch<React.SetStateAction<string>>;
 
+    datasets : Map<string, Dataset>;
+    setDatasets : React.Dispatch<React.SetStateAction<Map<string, Dataset>>>;
+    datasetsStats : Map<string, DatasetStats>;
+    setDatasetsStats : React.Dispatch<React.SetStateAction<Map<string, DatasetStats>>>;
+
     goldIndexStats: GoldIndexStats;
     setGoldIndexStats : React.Dispatch<React.SetStateAction<GoldIndexStats>>;
     dataset1Stats: DatasetStats;
@@ -51,12 +56,15 @@ const ApplicationContextProvider = ({ children } : ApplicationContextProviderPro
     const [dataset1Name, setDataset1Name] = useState<string>('');
     const [dataset2Name, setDataset2Name] = useState<string>('');
 
+    const [datasets, setDatasets] = useState<Map<string, Dataset>>((new Map<string, Dataset>()).set('DS1', {label: 'Dataset 1', data: new Map<string, DatasetItem>()}).set('DS2', {label: 'Dataset 2', data: new Map<string, DatasetItem>()}));
+    const [datasetsStats, setDatasetsStats] = useState<Map<string, DatasetStats>>(new Map<string, DatasetStats>());
+
     const [goldIndexStats, setGoldIndexStats] = useState<GoldIndexStats>({averageOfTerms: 0, numberOfTerms: 0});
     const [dataset1Stats, setDataset1Stats] = useState<DatasetStats>({averageOfTerms: 0, numberOfTerms: 0, documentsStats: new Map<string, DocumentStats>(), averageMetrics: new Map<string, IndexingMetric>()})
     const [dataset2Stats, setDataset2Stats] = useState<DatasetStats>({averageOfTerms: 0, numberOfTerms: 0, documentsStats: new Map<string, DocumentStats>(), averageMetrics: new Map<string, IndexingMetric>()})
 
     return (
-        <ApplicationContext.Provider value={{goldIndex, setGoldIndex, dataset1, setDataset1, dataset2, setDataset2, goldIndexStats, setGoldIndexStats, dataset1Stats, setDataset1Stats, dataset2Stats, setDataset2Stats, dataset1Name, setDataset1Name, dataset2Name, setDataset2Name}}>
+        <ApplicationContext.Provider value={{goldIndex, setGoldIndex, dataset1, setDataset1, dataset2, setDataset2, goldIndexStats, setGoldIndexStats, dataset1Stats, setDataset1Stats, dataset2Stats, setDataset2Stats, dataset1Name, setDataset1Name, dataset2Name, setDataset2Name, datasets, setDatasets, datasetsStats, setDatasetsStats}}>
             {children}
         </ApplicationContext.Provider>
     )

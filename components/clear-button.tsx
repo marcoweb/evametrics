@@ -16,6 +16,7 @@ const ClearButton = () => {
         context.setDataset2Stats({averageOfTerms: 0, numberOfTerms: 0, documentsStats: new Map<string, DocumentStats>(), averageMetrics: new Map<string, IndexingMetric>()});
         context.setDataset1Name('');
         context.setDataset2Name('');
+        
     }
 
     return (
