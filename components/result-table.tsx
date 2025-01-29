@@ -48,14 +48,14 @@ const ResultTable = () => {
     useEffect(() => {
         if(context.datasetsStats.size > 0) {
             const averageTableData : string[][] = [['Gold Index', context.goldIndexStats.averageOfTerms.toString(), '-', '-', '-']]
-            context.datasetsStats.forEach((dsStats) => {
+            context.datasetsStats.forEach((dsStats,  l) => {
                 averageTableData.push([(context.datasets.get(l) as Dataset).label, dsStats.averageOfTerms.toString(),  (dsStats.averageMetrics.get(MetricName.Precision) as IndexingMetric).percentage.toLocaleString('pt-br', {maximumFractionDigits: 2}), (dsStats.averageMetrics.get(MetricName.Recall) as IndexingMetric).percentage.toLocaleString('pt-br', {maximumFractionDigits: 2}), (dsStats.averageMetrics.get(MetricName.FMeasure) as IndexingMetric).percentage.toLocaleString('pt-br', {maximumFractionDigits: 2})])
             });
 
             const tableData : string[][] = [];
             context.goldIndex.data.forEach((doc) => {
                 const row : string[] = [doc.id];
-                context.datasetsStats.forEach((dsStats, l) => {
+                context.datasetsStats.forEach((dsStats) => {
                     row.push(((dsStats.documentsStats.get(doc.id) as DocumentStats).metrics.get(MetricName.Precision) as IndexingMetric).percentage.toLocaleString('pt-br', { maximumFractionDigits: 2 }));
                     row.push(((dsStats.documentsStats.get(doc.id) as DocumentStats).metrics.get(MetricName.Recall) as IndexingMetric).percentage.toLocaleString('pt-br', { maximumFractionDigits: 2 }));
                     row.push(((dsStats.documentsStats.get(doc.id) as DocumentStats).metrics.get(MetricName.FMeasure) as IndexingMetric).percentage.toLocaleString('pt-br', { maximumFractionDigits: 2 }));

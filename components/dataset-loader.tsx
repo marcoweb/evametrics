@@ -1,26 +1,25 @@
 'use client'
 
-import { useState } from "react";
+// import { useState } from "react";
 import { useApplicationContext } from "@/contexts/applicationContext";
-import { DatasetItem } from "@/types/dataset-item";
 import DatasetLoadControl from "./dataset-load-control";
 
 const DatasetLoader = () => {
     const context = useApplicationContext();
-    const [datasets, setDatasets] = useState(context.datasets)
+    // const [datasets, setDatasets] = useState(context.datasets)
 
-    function getDatasetName() : string {
-        let cont = 1;
-        let result = '';
-        while(true) {
-            cont++;
-            result = 'DS' + cont;
-            if(!context.datasets.has(result)) {
-                break;
-            }
-        }
-        return result;
-    }
+    // function getDatasetName() : string {
+    //     let cont = 1;
+    //     let result = '';
+    //     while(true) {
+    //         cont++;
+    //         result = 'DS' + cont;
+    //         if(!context.datasets.has(result)) {
+    //             break;
+    //         }
+    //     }
+    //     return result;
+    // }
 
     // function addDatasetHandler() {
     //     const datasets = context.datasets;
@@ -80,9 +79,9 @@ const DatasetLoader = () => {
     //     ]
     // }
 
-    return (datasets.size > 0) ?
+    return (context.datasets.size > 0) ?
     <div>
-        {Array.from(datasets, ([name, value]) => ({ name, value })).map((item) => <DatasetLoadControl label={item.name} key={'dsc' + item.name} />)}
+        {Array.from(context.datasets, ([name, value]) => ({ name, value })).map((item) => <DatasetLoadControl label={item.name} key={'dsc' + item.name} />)}
         {/* <span className="block text-right text-blue-600 hover:text-blue-400 transition-all cursor-pointer mt-4" onClick={addDatasetHandler}>Adicionar Conjunto de Dados
         </span> */}
     </div> : '';
