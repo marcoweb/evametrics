@@ -1,9 +1,7 @@
 'use client'
 
-import { ChangeEvent, useEffect, useState } from "react";
-import HideableTable from "./hideableTable";
+import { useState } from "react";
 import { useApplicationContext } from "@/contexts/applicationContext";
-import { Dataset } from "@/types/dataset";
 import { DatasetItem } from "@/types/dataset-item";
 import DatasetLoadControl from "./dataset-load-control";
 
@@ -24,13 +22,13 @@ const DatasetLoader = () => {
         return result;
     }
 
-    function addDatasetHandler() {
-        const datasets = context.datasets;
-        const name = getDatasetName();
-        datasets.set(name, {label: name.replace('DS', 'Dataset '), data: new Map<string, DatasetItem>()});
-        context.setDatasets(datasets);
-        setDatasets(context.datasets);
-    }
+    // function addDatasetHandler() {
+    //     const datasets = context.datasets;
+    //     const name = getDatasetName();
+    //     datasets.set(name, {label: name.replace('DS', 'Dataset '), data: new Map<string, DatasetItem>()});
+    //     context.setDatasets(datasets);
+    //     setDatasets(context.datasets);
+    // }
 
     // function getDataTable(dataset : Dataset) : string[][] {
     //     const result : string[][] = []

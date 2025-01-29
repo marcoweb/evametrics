@@ -28,7 +28,7 @@ const ResultTable = () => {
             ],
             row2: []
         }
-        context.datasets.forEach((ds, l) => {
+        context.datasets.forEach((ds) => {
             if(ds.data.size > 0) {
                 result.row1.push({title: ds.label, colspan: 3});
                 (result.row2 as HidableTableHeaderItem[]).push({title: 'Precision (%)'});
@@ -48,7 +48,7 @@ const ResultTable = () => {
     useEffect(() => {
         if(context.datasetsStats.size > 0) {
             const averageTableData : string[][] = [['Gold Index', context.goldIndexStats.averageOfTerms.toString(), '-', '-', '-']]
-            context.datasetsStats.forEach((dsStats, l) => {
+            context.datasetsStats.forEach((dsStats) => {
                 averageTableData.push([(context.datasets.get(l) as Dataset).label, dsStats.averageOfTerms.toString(),  (dsStats.averageMetrics.get(MetricName.Precision) as IndexingMetric).percentage.toLocaleString('pt-br', {maximumFractionDigits: 2}), (dsStats.averageMetrics.get(MetricName.Recall) as IndexingMetric).percentage.toLocaleString('pt-br', {maximumFractionDigits: 2}), (dsStats.averageMetrics.get(MetricName.FMeasure) as IndexingMetric).percentage.toLocaleString('pt-br', {maximumFractionDigits: 2})])
             });
 

@@ -62,10 +62,6 @@ const DatasetLoadControl = ({label} : DatasetLoadControlProps) => {
         ]
     }
 
-    function removeHandle() {
-
-    }
-
     return <div key={label}>
         {/* {context.datasets.size > 1 ?
         <div className="text-right">
