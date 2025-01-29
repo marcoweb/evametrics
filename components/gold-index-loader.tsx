@@ -51,6 +51,7 @@ const GoldIndexLoader = () => {
             <label htmlFor="GI" className="font-bold text-1xl">Gold Index</label>
             <input type="file" onChange={onChangeFileHandler} name='GI' id='GI' className="block w-full text-sm text-slate-500 border-0 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-sky-500 file:text-sm file:font-semibold file:text-white hover:file:hover:bg-sky-600" />
             <HideableTable header={headerTable} data={dataTable} />
+            <hr />
         </div>
     );
 }
