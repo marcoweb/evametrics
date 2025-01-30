@@ -43,7 +43,12 @@ const DatasetLoadControl = ({label} : DatasetLoadControlProps) => {
                     const result = new Map<string, DatasetItem>()
                     rows.slice(1).forEach(element => {
                         if (element[1] != undefined)
-                            result.set('D' + (element[0].length < 2 ? '0' : '') + element[0], {id: 'D' + (element[0].length < 2 ? '0' : '') + element[0], terms: element[2].replace(/"/g, "").split(',').map(item => item.trim())})
+                            //result.set('D' + (element[0].length < 2 ? '0' : '') + element[0], {id: 'D' + (element[0].length < 2 ? '0' : '') + element[0], terms: element[2].replace(/"/g, "").split(',').map(item => item.trim())})
+                            if(element[0].startsWith('D')){
+                                result.set(element[0], {id: element[0], terms: element[2].replace(/"/g, "").split(',').map(item => item.trim())})
+                            } else {
+                                result.set('D' + element[0], {id: 'D' + element[0], terms: element[2].replace(/"/g, "").split(',').map(item => item.trim())})
+                            }
                     });
                     const datasets = context.datasets;
                     (datasets.get(label) as Dataset).data = result;
