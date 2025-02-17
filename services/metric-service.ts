@@ -24,6 +24,7 @@ function getMetricsFMeasure(precision : number, recall : number) : IndexingMetri
 
 function getAllMetricsFromDocument(documentStats: DocumentStats, goldIndexDatatset: Dataset) : Map<string, IndexingMetric> {
     let result = new Map<string, IndexingMetric>();
+    console.log(goldIndexDatatset)
     result.set(MetricName.Precision, getMetricsPrecision(documentStats.numberOfCorrectTerms, documentStats.numberOfAssignedTerms));
     result.set(MetricName.Recall, getMetricsRecall(documentStats.numberOfCorrectTerms, (goldIndexDatatset.data.get(documentStats.id) as DatasetItem).terms.length));
     result.set(MetricName.FMeasure, getMetricsFMeasure(((result.get(MetricName.Precision) as IndexingMetric).value), (result.get(MetricName.Recall) as IndexingMetric).value))
