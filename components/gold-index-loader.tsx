@@ -30,7 +30,7 @@ const GoldIndexLoader = () => {
                     const result : Dataset = {label: event.target.id, data: new Map<string, DatasetItem>()}
                     rows.forEach(element => {
                         if (element[1] != undefined)
-                            result.data.set(element[0], {id: element[0], terms: element[1].replace(/"/g, "").split(',').map(item => item.trim())})
+                            result.data.set(element[0].trim(), {id: element[0].trim(), terms: element[1].replace(/"/g, "").split(',').map(item => item.trim())})
                     });
                     context.setGoldIndex(result);
                 }

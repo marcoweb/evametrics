@@ -24,6 +24,7 @@ function getMetricsFMeasure(precision : number, recall : number) : IndexingMetri
 
 function getAllMetricsFromDocument(documentStats: DocumentStats, goldIndexDatatset: Dataset) : Map<string, IndexingMetric> {
     let result = new Map<string, IndexingMetric>();
+    // console.log(goldIndexDatatset)
     result.set(MetricName.Precision, getMetricsPrecision(documentStats.numberOfCorrectTerms, documentStats.numberOfAssignedTerms));
     result.set(MetricName.Recall, getMetricsRecall(documentStats.numberOfCorrectTerms, (goldIndexDatatset.data.get(documentStats.id) as DatasetItem).terms.length));
     result.set(MetricName.FMeasure, getMetricsFMeasure(((result.get(MetricName.Precision) as IndexingMetric).value), (result.get(MetricName.Recall) as IndexingMetric).value))
@@ -33,8 +34,11 @@ function getAllMetricsFromDocument(documentStats: DocumentStats, goldIndexDatats
 function getDocumentStats(datasetItem: DatasetItem, goldIndexDatatset: Dataset) : DocumentStats {
     const result : DocumentStats = {id: datasetItem.id, numberOfAssignedTerms: datasetItem.terms.length, numberOfCorrectTerms: 0, metrics: new Map<string, IndexingMetric>()};
     datasetItem.terms.forEach((term) => {
-        if(goldIndexDatatset.data.get(datasetItem.id)?.terms.map((git) => {return git.toLowerCase()}).includes(term.toLowerCase())) {
+        if(goldIndexDatatset.data.get(datasetItem.id)?.terms.map((git) => {return git.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')}).includes(term.toLowerCase())) {
             result.numberOfCorrectTerms += 1;
+        } else {
+            console.log(datasetItem.id + ' NOT FOUND: ' + term.toLowerCase());
+            console.log(goldIndexDatatset.data.get(datasetItem.id)?.terms.map((git) => {return git.toLowerCase()}));
         }
     });
     result.metrics = getAllMetricsFromDocument(result, goldIndexDatatset);
