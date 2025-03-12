@@ -72,9 +72,9 @@ const DatasetLoadControl = ({label} : DatasetLoadControlProps) => {
         <div className="text-right">
             <button onClick={removeHandle} className="rounded-md bg-red-500 p-2 text-white hover:bg-red-600 transition-all cursor-pointer mt-4" >Remover Conjunto de Dados [ {name} ]</button>
         </div> : '' } */}
-        <label htmlFor={'name' + label} className="font-bold text-1xl">Nome do Conjunto</label>
+        <label htmlFor={'name' + label} className="font-bold text-1xl">Dataset Name</label>
         <input value={name} onChange={onNameChangeHandler} type="text" name={'name' + label} id={'name' + label} className="border-gray-400 rounded-md text-gray-600 focus:border-sky-600 focus:outline focus:outline-0" />
-        <label htmlFor={label} className="font-bold text-1xl">Conjunto de Dados</label>
+        <label htmlFor={label} className="font-bold text-1xl">Dataset</label>
         <input type="file" onChange={onChangeFileHandler} name={label} id={label} className="block w-full text-sm text-slate-500 border-0 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-sky-500 file:text-sm file:font-semibold file:text-white hover:file:hover:bg-sky-600" />
         {<HideableTable header={headerTable} data={dataTable} />}
         <hr />

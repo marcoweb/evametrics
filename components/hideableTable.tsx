@@ -34,10 +34,10 @@ const HideableTable = ({header, data, startHidden = true, labelWhenHidden = '', 
         <div>
             {isHidden ?
             <p>
-                {data.length > 0 ? <button onClick={visibilityToggler} className="rounded-md bg-gray-400 p-2 text-white w-full hover:bg-gray-500 transition-all cursor-pointer mt-4">{labelWhenHidden} {labelWhenHidden.length > 0 ? ':' : ''} <span className="text-center italic text-gray-100">Clique para Exibir {data.length} Registro{data.length > 1 ? 's' : ''}</span></button> : <span>Sem Registros</span>}
+                {data.length > 0 ? <button onClick={visibilityToggler} className="rounded-md bg-gray-400 p-2 text-white w-full hover:bg-gray-500 transition-all cursor-pointer mt-4">{labelWhenHidden} {labelWhenHidden.length > 0 ? ':' : ''} <span className="text-center italic text-gray-100">Click to View {data.length} Record{data.length > 1 ? 's' : ''}</span></button> : <span>No Records</span>}
             </p> :
             <>
-            <span className="text-center block italic text-gray-500">Clique na Tabela Para Ocultar</span>
+            <span className="text-center block italic text-gray-500">Click Table to Hide</span>
             {canBeExported ?
             <CsvExportControl tableHeader={header} tableData={data} />
             : ''}

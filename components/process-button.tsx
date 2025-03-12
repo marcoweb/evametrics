@@ -43,14 +43,14 @@ const ProcessButton = () => {
     function validateData() : boolean {
         const er : ErrorMessage[] = []
         if(context.goldIndex.data.size == 0){
-            er.push({target: "Gold Index", message: "Carregue um conjunto de dados válido."})
+            er.push({target: "Gold Indexing", message: "Please load a valid dataset."})
         }
         const ds1 = (context.datasets.get('DS1') as Dataset)
         if(ds1.label.length == 0) {
-            er.push({target: "Nome do Conjunto de Dados 1" , message: "É necessário nomear o conjunto de dados"})
+            er.push({target: "Nome do Conjunto de Dados 1" , message: "It is necessary to name the dataset"})
         }
         if(ds1.data.size == 0) {
-            er.push({target: "Conjunto de Dados 1 [ " + ds1.label +" ]", message: "Carregue um conjunto de dados válido."})
+            er.push({target: "Dataset 1 [ " + ds1.label +" ]", message: "Please load a valid dataset."})
         }
         setErrors(er)
         return (er.length == 0);
@@ -86,7 +86,7 @@ const ProcessButton = () => {
 
     return(
         <div>
-            <button onClick={handleProcess} className="rounded-md bg-green-500 p-2 text-white w-full hover:bg-green-600 transition-all cursor-pointer mt-4">Processar Conjuntos</button>
+            <button onClick={handleProcess} className="rounded-md bg-green-500 p-2 text-white w-full hover:bg-green-600 transition-all cursor-pointer mt-4">Process the Datasets</button>
             {errors.length > 0 ?
             <div className="border border-red-600 m-2 rounded-md bg-red-100 text-red-600">
                 {errors.map((error) => <p key={error.target}><em className="font-bold">{error.target}</em> : {error.message}</p>)}

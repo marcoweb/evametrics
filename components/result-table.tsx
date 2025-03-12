@@ -13,8 +13,8 @@ const ResultTable = () => {
 
     const averageHeaderTable = {
         row1: [
-            {title: 'Conjuntos'},
-            {title: 'Termos'},
+            {title: 'Datasets'},
+            {title: 'Terms'},
             {title: 'Precision (%)'},
             {title: 'Recall (%)'},
             {title: 'FMeasure (%)'}
@@ -47,7 +47,7 @@ const ResultTable = () => {
 
     useEffect(() => {
         if(context.datasetsStats.size > 0) {
-            const averageTableData : string[][] = [['Gold Index', context.goldIndexStats.averageOfTerms.toString(), '-', '-', '-']]
+            const averageTableData : string[][] = [['Gold Indexing', context.goldIndexStats.averageOfTerms.toString(), '-', '-', '-']]
             context.datasetsStats.forEach((dsStats,  l) => {
                 averageTableData.push([(context.datasets.get(l) as Dataset).label, dsStats.averageOfTerms.toString(),  (dsStats.averageMetrics.get(MetricName.Precision) as IndexingMetric).percentage.toLocaleString('pt-br', {maximumFractionDigits: 2}), (dsStats.averageMetrics.get(MetricName.Recall) as IndexingMetric).percentage.toLocaleString('pt-br', {maximumFractionDigits: 2}), (dsStats.averageMetrics.get(MetricName.FMeasure) as IndexingMetric).percentage.toLocaleString('pt-br', {maximumFractionDigits: 2})])
             });
@@ -97,11 +97,11 @@ const ResultTable = () => {
         <>
         {context.goldIndexStats.numberOfTerms > 0 ?
         <div>
-            <h1 className="p-4 font-bold text-2xl text-center">Resultados</h1>
-            <h1 className="p-4 font-bold text-1xl text-center">Médias</h1>
-            <HideableTable canBeExported={true} header={averageHeaderTable} data={averageTableData} startHidden={false} labelWhenHidden="Tabela de Médias" />
+            <h1 className="p-4 font-bold text-2xl text-center">Results</h1>
+            <h1 className="p-4 font-bold text-1xl text-center">Averages</h1>
+            <HideableTable canBeExported={true} header={averageHeaderTable} data={averageTableData} startHidden={false} labelWhenHidden="Average Table" />
 
-            <h1 className="p-4 font-bold text-1xl text-center">Conjuntos de Dados</h1>
+            <h1 className="p-4 font-bold text-1xl text-center">Datasets</h1>
             <HideableTable canBeExported={true} header={datasetsHeaderTable} data={datasetsTableData} startHidden={false} />
         </div> : ''}
         </>
