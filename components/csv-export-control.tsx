@@ -33,7 +33,7 @@ const CsvExportControl = ({tableHeader, tableData} : CsvExportControlProps) => {
     }
 
     return <div className="text-right">
-            <span className="text-blue-600 hover:text-blue-400 transition-all cursor-pointer mt-4" onClick={exportControlHandler}>Exportar dados para CSV
+            <span className="text-blue-600 hover:text-blue-400 transition-all cursor-pointer mt-4" onClick={exportControlHandler}>Export Data To CSV
                 <svg className="wx-5 h-5 text-gray-800 dark:text-white inline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
                     <path stroke="currentColor" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
                 </svg>

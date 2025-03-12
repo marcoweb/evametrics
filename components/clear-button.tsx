@@ -21,7 +21,7 @@ const ClearButton = () => {
 
     return (
         <div className="text-right">
-            <button onClick={clearHandle} className="rounded-md bg-red-500 p-2 text-white hover:bg-red-600 transition-all cursor-pointer mt-4" >Limpar Dados</button>
+            <button onClick={clearHandle} className="rounded-md bg-red-500 p-2 text-white hover:bg-red-600 transition-all cursor-pointer mt-4" >Clear Data</button>
         </div>
     );
 }
